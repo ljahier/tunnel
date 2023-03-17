@@ -11,8 +11,6 @@ func Init(server string, port int) {
 		panic("The server address is not valid")
 	}
 	fmt.Println("hello")
-	// get somes info from cli
-	// connect to ngrok server
 	// get an subdomain
 	// show subdomain
 	// each incom from this connection must be redirect to local http app which are defined at the client run

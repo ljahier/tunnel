@@ -30,12 +30,6 @@ func runClient(cmd *cobra.Command, args []string) {
 	client.Init(server, port)
 }
 
-/*
-	How tunnel works ?
-	- the client make an http request to ask subdomain and to open new connection
-	- the server expose subdomain and redirect all incomming request from this subdomain to client inside already open tcp conn
-*/
-
 func main() {
 	// TODO(lucas): split cli command into another src file
 	localServer := &cobra.Command{
@@ -48,13 +42,6 @@ func main() {
 		Short: "Run client listening port",
 		Run:   runServer,
 	}
-
-	// localServerPort := &cobra.Command{
-	// 	Use:   "port",
-	// 	Short: "Run client on specified port",
-	// 	Args:  cobra.MaximumNArgs(1),
-	// 	Run:   runServer,
-	// }
 
 	localClient := &cobra.Command{
 		Use:   "client",
