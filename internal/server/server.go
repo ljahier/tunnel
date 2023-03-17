@@ -55,5 +55,4 @@ func handleRequest(conn net.Conn) {
 
 	fmt.Println(string(buf))
 	conn.Write([]byte("Message received."))
-	conn.Close()
 }
