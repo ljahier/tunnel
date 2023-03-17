@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/ljahier/tunnel/internal/client"
@@ -20,14 +19,13 @@ func runServer(cmd *cobra.Command, args []string) {
 
 func runClient(cmd *cobra.Command, args []string) {
 	port, err := strconv.Atoi(cmd.Flag("port").Value.String())
-
-	fmt.Println("Hey")
 	if err != nil {
 		panic("You must enter a number as port")
 	}
 	server := cmd.Flag("server").Value.String()
+	value := cmd.Flag("value").Value.String()
 
-	client.Init(server, port)
+	client.Init(server, port, value)
 }
 
 /*
@@ -69,5 +67,6 @@ func main() {
 	localServerStart.PersistentFlags().Int("port", 3000, "Server port")
 	localClient.PersistentFlags().Int("port", 8081, "Port which are listenning for your local web service")
 	localClient.PersistentFlags().String("server", "127.0.0.1:3000", "Tunneling server url")
+	localClient.PersistentFlags().String("value", "1", "Value")
 	rootCmd.Execute()
 }

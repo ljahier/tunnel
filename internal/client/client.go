@@ -5,7 +5,7 @@ import (
 	"net"
 )
 
-func Init(server string, port int) {
+func Init(server string, port int, value string) {
 	tcpAddr, err := net.ResolveTCPAddr("tcp", server)
 	if err != nil {
 		panic("The server address is not valid")
@@ -27,11 +27,12 @@ func Init(server string, port int) {
 		fmt.Println("Cannot keep alive connection: ", err)
 	}
 
-	conn.Write([]byte("Hello from client")) // we just need to open tcp conn
+	conn.Write([]byte(fmt.Sprintf("value = '%s'", value))) // we just need to open tcp conn
 	buf := make([]byte, 1024)
 	_, err = conn.Read(buf)
 	if err != nil {
 		fmt.Println("Error reading:", err.Error())
 	}
 	fmt.Println(string(buf))
+
 }
